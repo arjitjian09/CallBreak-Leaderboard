@@ -20,6 +20,7 @@ const App = () => {
           options={{ title: 'Welcome' }}
         />
         <Stack.Screen name="Calculation" component={CalculationScreen} />
+        <Stack.Screen name="Result" component={ResultScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -78,16 +79,51 @@ const HomeScreen = ({ navigation }) => {
     </View>
   );
 };
+
+
 const CalculationScreen = ({ navigation, route }) => {
   return (
   <View>
-  <Text>{route.params.rounds}</Text>
+  <Text>{route.params.currentround}</Text>
   {route.params.players.map((prop, key) => {
          return (
            <Text  key={key}>{prop['name']}</Text>
+           
          );
       })}
   
+  { route.params.currentround === route.params.rounds
+  ?
+  <Button
+      title="Result"
+      onPress={() =>
+        navigation.navigate('Result', { players: [{name:'Lola',score:0},{name:'Dolly',score:0},{name:'Meetha',score:0},{name:'Laalu',score:0},
+        {name:'Runal',score:0},], currentround :route.params.currentround ,rounds:5,noOfPlayers:5 })
+      }
+    
+    />
+  :
+  <Button
+      title="Next Round"
+      onPress={() =>
+        navigation.navigate('Calculation', { players: [{name:'Lola',score:0},{name:'Dolly',score:0},{name:'Meetha',score:0},{name:'Laalu',score:0},
+        {name:'Runal',score:0},], currentround : route.params.currentround+1,rounds:5,noOfPlayers:5 })
+      }
+    
+    />}
+  </View>
+  );
+};
+
+const ResultScreen = ({ navigation, route }) => {
+  return (
+  <View>
+  <Text>Result</Text>
+  {route.params.players.map((prop, key) => {
+         return (
+           <Text  key={key}>{prop['name']} {prop['score']}</Text>
+         );
+      })}
   
   </View>
   );
