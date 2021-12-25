@@ -1,12 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, Button, View, TextInput, ImageBackground } from 'react-native';
+import { StyleSheet, Text, Button, View, TextInput, ImageBackground, ScrollView } from 'react-native';
 import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 const Stack = createNativeStackNavigator();
-
-const image = { uri: "https://reactjs.org/logo-og.png" };
 
 
 const App = () => {
@@ -19,7 +17,14 @@ const App = () => {
           component={HomeScreen}
           options={{ title: 'Welcome' }}
         />
-        <Stack.Screen name="Calculation" component={CalculationScreen} />
+        <Stack.Screen
+          name="Players"
+          component={PlayerScreen}
+          options={{ title: 'Players Screen' }}
+        />
+        <Stack.Screen 
+        name="Calculation" 
+        component={CalculationScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -49,7 +54,10 @@ const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Gola Counter</Text>
-        <ImageBackground source={image}  resizeMode="cover" style={styles.image}>
+        <ImageBackground source={require('C:/Users/91626/project/CallBreak-Leaderboard/golacounter/assets/Background.jpg')}  resizeMode="cover" style={styles.image}>
+        <ScrollView contentContainerStyle={{flexGrow: 1}}
+  keyboardShouldPersistTaps='handled'
+>
         <TextInput
         style={styles.input}
         onChangeText={onChangeNumber}
@@ -57,6 +65,10 @@ const HomeScreen = ({ navigation }) => {
         placeholder="Number of Players:"
         keyboardType="numeric"
       />
+      </ScrollView>
+      <ScrollView contentContainerStyle={{flexGrow: 1}}
+  keyboardShouldPersistTaps='handled'
+>
       <TextInput
         style={styles.input}
         onChangeText={onChangeRound}
@@ -64,20 +76,23 @@ const HomeScreen = ({ navigation }) => {
         placeholder="Number of Rounds:"
         keyboardType="numeric"
       />
+      </ScrollView>
       </ImageBackground>
       <StatusBar style="auto" />
     
     <Button
       title="Start"
       onPress={() =>
-        navigation.navigate('Calculation', { players: [{name:'Lola',score:0},{name:'Dolly',score:0},{name:'Meetha',score:0},{name:'Laalu',score:0},
-        {name:'Runal',score:0},], currentround :1 ,rounds:5,noOfPlayers:5 })
+        navigation.navigate('Players',{noOfPlayer: number, noOfRounds: round} )
+        //{ players: [{name:'Lola',score:0},{name:'Dolly',score:0},{name:'Meetha',score:0},{name:'Laalu',score:0},
+        //{name:'Runal',score:0},], currentround :1 ,rounds:5,noOfPlayers:5 }
       }
     
     />
     </View>
   );
 };
+
 const CalculationScreen = ({ navigation, route }) => {
   return (
   <View>
