@@ -1,7 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TextInput } from 'react-native';
 import React from "react";
-import { SafeAreaView, StyleSheet, TextInput } from "react-native";
 
 const App = () => {
   const [number, onChangeNumber] = React.useState(null);
@@ -38,3 +37,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
