@@ -1,12 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { ImageBackground, StyleSheet, Text, View, TextInput } from 'react-native';
 import React from "react";
+
+const image = { uri: "https://reactjs.org/logo-og.png" };
+
 
 const App = () => {
   const [number, onChangeNumber] = React.useState(null);
   const [round, onChangeRound] = React.useState(null);
   return (
     <View style={styles.container}>
+        <ImageBackground source={image} resizeMode="cover" style={styles.image}>
       <Text>Gola Counter</Text>
       <Text>Enter Number of Players:</Text>
       <TextInput
