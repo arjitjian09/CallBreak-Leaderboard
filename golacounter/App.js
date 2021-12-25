@@ -2,13 +2,17 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, Button, View, TextInput } from 'react-native';
 import React from "react";
 
+const image = { uri: "https://reactjs.org/logo-og.png" };
+
+
 const App = () => {
   const [number, onChangeNumber] = React.useState(null);
   const [round, onChangeRound] = React.useState(null);
   return (
     <View style={styles.container}>
       <Text>Gola Counter</Text>
-      <TextInput
+        <ImageBackground source={image}  resizeMode="cover" style={styles.image}>
+        <TextInput
         style={styles.input}
         onChangeText={onChangeNumber}
         value={number}
@@ -22,6 +26,7 @@ const App = () => {
         placeholder="Number of Rounds:"
         keyboardType="numeric"
       />
+      </ImageBackground>
       <StatusBar style="auto" />
       <Button
         title="Start"
@@ -38,6 +43,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  image:{
+    alignSelf:'stretch',
+    flex:1,
+    justifyContent:'center',
+  }
 });
 
 export default App;
