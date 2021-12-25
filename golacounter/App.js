@@ -70,7 +70,8 @@ const HomeScreen = ({ navigation }) => {
     <Button
       title="Start"
       onPress={() =>
-        navigation.navigate('Calculation', { names: ['yathart','aman','Runal','Dolly','Arjit'], rounds:5 })
+        navigation.navigate('Calculation', { players: [{name:'Lola',score:0},{name:'Dolly',score:0},{name:'Meetha',score:0},{name:'Laalu',score:0},
+        {name:'Runal',score:0},], currentround :1 ,rounds:5,noOfPlayers:5 })
       }
     
     />
@@ -81,12 +82,12 @@ const CalculationScreen = ({ navigation, route }) => {
   return (
   <View>
   <Text>{route.params.rounds}</Text>
+  {route.params.players.map((prop, key) => {
+         return (
+           <Text  key={key}>{prop['name']}</Text>
+         );
+      })}
   
-  <Text>{route.params.names[0]}</Text>
-  <Text>{route.params.names[1]}</Text>
-  <Text>{route.params.names[2]}</Text>
-  <Text>{route.params.names[3]}</Text>
-  <Text>{route.params.names[4]}</Text>
   
   </View>
   );
