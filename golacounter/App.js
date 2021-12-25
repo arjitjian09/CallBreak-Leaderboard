@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
+import { StyleSheet, Text, Button, View, TextInput } from 'react-native';
 import React from "react";
 
 const App = () => {
@@ -8,23 +8,25 @@ const App = () => {
   return (
     <View style={styles.container}>
       <Text>Gola Counter</Text>
-      <Text>Enter Number of Players:</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangeNumber}
         value={number}
-        placeholder="Players"
+        placeholder="Number of Players:"
         keyboardType="numeric"
       />
-      <Text>Enter Number of Rounds:</Text>
       <TextInput
         style={styles.input}
         onChangeText={onChangeRound}
         value={round}
-        placeholder="Rounds"
+        placeholder="Number of Rounds:"
         keyboardType="numeric"
       />
       <StatusBar style="auto" />
+      <Button
+        title="Start"
+        onPress={() => Alert.alert('Simple Button pressed')}
+      />
     </View>
   );
   };
